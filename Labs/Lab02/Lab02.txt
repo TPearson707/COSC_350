@@ -1,0 +1,56 @@
+## Thomas Pearson
+## 09/10/2024
+## COSC 350 - Lab 2
+## Dr. Park
+
+### Task 1
+
+1. \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+
+2.
+
+* EDITOR = no value
+* HOME = /mnt/linuxlab/home/tpearson3
+* HOSTNAME = hpcl5-4
+* LD_LIBRARY_PATH = no value
+* LESS = no value
+* MAIL = no value
+* MANPATH = no value
+* MORE = no value
+* PAGER = no value
+* PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/bin:/usr/local/cuda/bin:/opt/hadoop-3.3.3/bin:/opt/hadoop-3.3.3/sbin:/opt/ompi/bin:/opt/pmix/bin
+* PWD = /mnt/linuxlab/home/tpearson3
+* SHELL = /bin/bash
+* TERM = xterm-256color
+* USER = tpearson3
+
+### Task 2
+
+* echo $PS1 > PSTMP 
+* PS1="basecwd"
+* echo $PSTMP > PS1
+
+### Task 4
+* ls file 2> bar.txt 
+* ls file 2> /dev/null 
+* echo 3 > foo, echo 5 >> foo, echo 2 >> foo, echo 1 >> foo 
+* cat foo > bar 
+* sort < foo 
+* sort < foo >> bar 
+
+### Task 5
+                  
+* To create numbs containing one integer per line from 1 - 100 I created a bash script that utilized a for loop to    echo each number in with $i
+* 100 100 292 numbs, the first number is the newline count, the second is the word count, and the third is the byte
+  count
+* $head -n 38 numbs | tail -14
+* head -n 38 numbs | tail -14 > something
+* 14 14 42 something, 14 new lines, 14 words, 42 bytes total
+~
+~
+~
+~
+~
+~
+Lab2.txt [+]                                                                                      46,3           All
+-- INSERT --                                                                                                  

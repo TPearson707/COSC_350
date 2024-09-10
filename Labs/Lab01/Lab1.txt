@@ -1,0 +1,98 @@
+Task 1: /usr/include
+
+Task 2: ../bin/ls
+
+Task 3:
+
+a. -rw-r--r--
+b. TPearson3
+c. students
+d. yes
+e. students
+
+3. chmod u-r-w+x foo, chmod g-r+w-x foo, chmod o+r-w+x foo
+
+4. rm foo, rm: remove write-protected regular empty file 'foo'? no.
+
+
+5. The issue in number 4 can be solved by either changing the command rm foo to rm -rf foo, or by changing the permissions in foo so that the user has write permissions.
+
+Task 4:
+
+2. -a = --all: Do not ignore entries starting with ., -l = use a long listing format, -R = --recursively: List all directories recursively
+
+3.
+
+ls
+
+bin  Desktop  Documents  Documents.zip  Downloads  Lab1.txt  Music  Pictures  Public  Templates  Videos
+
+ls -l
+
+total 62
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 bin
+drwxr-xr-x  2 tpearson3 students     3 Aug 31  2023 Desktop
+drwxr-xr-x 12 tpearson3 students    20 Apr 18 09:19 Documents
+-rw-r--r--  1 tpearson3 students 15891 Sep  7  2023 Documents.zip
+drwxr-xr-x  6 tpearson3 students    31 Apr 26 09:04 Downloads
+-rw-r--r--  1 tpearson3 students   434 Sep  3 09:07 Lab1.txt
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 Music
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 Pictures
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 Public
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 Templates
+drwxr-xr-x  2 tpearson3 students     2 Aug 31  2023 Videos
+
+ls -a
+
+.   .bash_history  .bashrc  .cache   Desktop  Documents      Downloads  .gnupg      .java  Lab1.txt            .local  .nv       .pki      Public     Videos       .xsession-errors      .yEd
+..  .bash_logout   bin      .config  .dmrc    Documents.zip  .emacs.d   .gtkrc-2.0  .kde   .Lab1.txt.kate-swp  Music   Pictures  .profile  Templates  .Xauthority  .xsession-errors.old
+
+4. 
+
+time(2): time - get time in seconds
+time(3am) - time functions for gawk
+time(7) - overview of time and timers
+
+5. man - an interface to the system reference manuals
+
+Task 5:
+
+2. /mnt/linuxlab/home
+3. cd ..
+4. /mnt/linuxlab
+5. drwxr-xr-x
+
+Task 6:
+
+1. /bin/bash = ELF 64-bit LSB pie executable
+2. foo = foo: empty
+3. ~/.bash_history = Ascii Text
+4. /usr/local = directory
+
+Task 7: 
+
+head -n 5 Lab1.txt
+tail filename.txt
+
+Task 8:
+1. cp ~/.bash_history ~/dotbashhistory
+2. Need read permission from source file and write permission on destination directory 
+3. works
+4. bash: mar 27, 2022, dotbashhistory: sep 9 12:15 
+5.cp -p ~/.bash_history ~/dotbashhistory
+
+Task 9:
+mv dotbashhistory dotbashhistory.old
+
+Task 10:
+rm dotbashhistory.old
+
+Task 11:
+mkdir Foo
+drwxr-xr-x
+mkdir Foo/Bar
+
+Task 12:
+rmdir: failed to remove 'Foo': Directory not empty
+rmdir Bar, cd .. rmdir Foo
+rm -r Foo
