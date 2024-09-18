@@ -25,7 +25,7 @@ mult() {
 div() {
     local a=$1
     local b=$2
-    
+
     if [ $b -eq 0 ]; then
         echo "cannot divide by 0"
         return 1
@@ -148,7 +148,7 @@ read -r choice
 if [ $choice = "1" ]; then
     echo "Enter a and b separated by a space"
     read -r  a b
-    add "$a" "$b" 
+    add "$a" "$b"
 fi
 
 if [ $choice = "2" ]; then
