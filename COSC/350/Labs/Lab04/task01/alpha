@@ -1,0 +1,111 @@
+ include  ctype h 
+ include  stdio h 
+ include  unistd h 
+ include  sys stat h 
+ include  fcntl h 
+ include  stdlib h 
+ include  string h 
+
+ define BUFFER SIZE  
+
+   write an error to std error and exit the program
+void err sys char  str   
+    write    str  strlen str   
+    exit    
+ 
+
+void write to file int fileDes  char  buffer  int nbyte   
+    if  write fileDes  buffer  nbyte     nbyte 
+        err sys  Write Error    
+ 
+
+int main int argc  char  argv   
+ 
+    int input  alpha  num  other  copy  nbyte 
+    char buffer BUFFER SIZE  
+
+    umask    
+
+    input   open argv     O RDONLY  
+    alpha   open argv     O RDWR   O CREAT   O TRUNC        
+    num   open argv     O RDWR   O CREAT   O TRUNC        
+    other   open argv     O RDWR   O CREAT   O TRUNC        
+    copy   open argv     O RDWR   O CREAT   O TRUNC        
+
+    while   nbyte   read input  buffer  BUFFER SIZE        
+
+           if newline  write it as is
+        if  buffer         n    
+            write to file alpha    n   nbyte  
+            write to file num    n   nbyte  
+            write to file other    n   nbyte  
+            continue 
+         
+
+           if alphabetic value  write to alpha
+        if  isalpha buffer       
+            write to file alpha  buffer  nbyte  
+          else  
+            write to file alpha       nbyte      write space if not alphabetic
+         
+
+           if digit  write to num
+        if  isdigit buffer       
+            write to file num  buffer  nbyte  
+          else  
+            write to file num       nbyte      write space if not digit
+         
+
+           if space or other character  write to other
+        if  isspace buffer            handle spaces correctly
+            write to file other  buffer  nbyte       write space as space
+          else if   isdigit buffer         isalpha buffer       
+            write to file other  buffer  nbyte       write other characters as is
+          else  
+            write to file other       nbyte      write space if alphabetic or digit
+         
+     
+
+    int bSize   lseek alpha     SEEK END  
+
+    char a buffer bSize  
+    char n buffer bSize  
+    char o buffer bSize  
+
+
+
+    if   pread alpha  a buffer  bSize          
+        err sys  read error   
+
+    if   pread num  n buffer  bSize          
+        err sys  read error   
+
+    if   pread other  o buffer  bSize          
+        err sys  read error   
+
+       write the other characters to copy
+    pwrite copy  o buffer  bSize     
+
+       write the alphanumeric characters to copy
+    for  int i      i   bSize  i     
+        if  isalpha a buffer i     
+            buffer      a buffer i  
+            pwrite copy  buffer     i  
+         
+     
+
+       write the numbers to copy
+    for  int i      i   bSize  i     
+        if  isdigit n buffer i     
+            buffer      n buffer i  
+            pwrite copy  buffer     i  
+         
+     
+
+    close input  
+    close alpha  
+    close num  
+    close other  
+
+    return   
+ 
