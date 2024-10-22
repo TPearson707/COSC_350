@@ -16,22 +16,30 @@ int main(int argc, char *argv[]) {
     Nc = myatoi(argv[1]);
     Tc = myatoi(argv[3]);
 
-    
+    n = Nc;
+    message = "This is a child!";
+    for (; n > 0; n--) {
+        printf("Child: %d\n", getpid());
+        sleep(Tc);
+    }
+
+    exit(37);
 }
 
 int myatoi(char *str) {
     int num = 0;
     int sign = 1;
+    int i = 0;
 
     if (str[0] == '-') {
         sign = -1;
-        str++;
+        i++;
     } else if (str[0] == '+')
-        str++;
+        i++;
 
     while (str[i] != '\0') {
         num = 10 * num + (str[i] - '0');
-        i++
+        i++;
     }
 
     return num * sign;

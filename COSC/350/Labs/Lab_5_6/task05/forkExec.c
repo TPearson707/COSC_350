@@ -1,4 +1,4 @@
-/* forkWait.c */
+/* forkExec.c */
 
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -25,16 +25,14 @@ int main(int argc, char *argv[]) {
     Tp = myatoi(argv[4]);
 
     printf("fork program starting\n");
-    pid = fork();
+    pid = vfork();
     switch(pid) {
         case -1:
-            perror("fork failed");
+            perror("vfork failed");
             exit(1);
         case 0:
-            message = "This is a child";
-            n = Nc;
-            exit_code = 37;
-            sleeper = 0;
+            execv("child.o", argv);
+            _exit(37);
             break;
         default:
             message = "This is the parent";
@@ -45,19 +43,16 @@ int main(int argc, char *argv[]) {
     }
 
     for (; n > 0; n--) {
-        puts(message);
-        if (sleeper == 0)
-            sleep(Tc);
-        else
-            sleep(Tp);
+        printf("Parent: %d\n", getpid());
+        sleep(Tp);
     }
-
+    
     if (pid != 0) {
         int stat_val;
         pid_t child_pid;
 
         child_pid = wait(&stat_val);
-        
+
         if (WIFEXITED(stat_val))
             printf("Child has finished: PID = %d\n", WEXITSTATUS(stat_val));
         else
