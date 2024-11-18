@@ -63,8 +63,11 @@ int main(int argc, char *argv[]) {
         else
             printf("Child terminated abnormally\n");
     }
-
-    exit(exit_code);
+    
+    if (pid != 0)
+        exit(exit_code);
+    else
+        _exit(exit_code);
 }
 
 int myatoi(char *str) {

@@ -8,7 +8,7 @@ extern char **environ;
 
 int mystrstr(const char *, const char *); /* checks to see where the first occurance of a string is */
 char *mygetenv(const char *name); /* my own get env function */
-int getsize(const char *); /* loops through a c-string to determie size n; returns size n */ 
+size_t getsize(const char *); /* loops through a c-string to determie size n; returns size n */ 
 
 int main()
 {
@@ -48,20 +48,22 @@ char *mygetenv(const char *name) {
         return "name entered is null";
 
     size_t size = getsize(name);
+    
+    char **env = environ;
 
-    for (char **env = environ; *env != NULL; env++) {
+    while (*env) {
         if (mystrstr(*env, name) == 1) {
             char *ptr = *env + size + 1;
             return ptr;
         }
-
+        *env++;
     }
 
     return "(null)";
 }
 
-int getsize(const char *str) {
-    int n = 0;
+size_t getsize(const char *str) {
+    size_t n = 0;
 
     while(str[n] != '\0')
         n++;
